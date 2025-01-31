@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Wizard Module Example</title>
+</head>
+<body style="margin:0; padding:0;">
+
+  <!-- Some demo elements -->
+  <input type="text" value="First step" style="position:absolute; top:10px; left:10px;" />
+  <div id="secondElement" style="position:absolute; top:800px; left:200px; width:120px; height:40px; background:lightblue;">
+    Second element (far down the page)
+  </div>
+
+  <button id="startBtn" style="position:absolute; top:200px; left:10px;">
+    Start Wizard
+  </button>
+
+  <!-- Include the wizard script -->
+  <script src="./wizard.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const steps = [
+        { selector: 'input[type="text"]', text: "Step 1: The input near the top-left." },
+        { selector: '#secondElement', text: "Step 2: A blue div further down the page." }
+      ];
+
+      document.getElementById('startBtn').addEventListener('click', function() {
+        WizardModule.startWizard(
+          steps,
+          'demoWizardId',    // wizardId
+          false,             // forceStart
+          'light',           // theme
+          { autoScroll: true }
+        );
+      });
+    });
+  </script>
+
+</body>
+</html>
